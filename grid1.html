@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grid-container{
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            grid-template-rows: 1fr 1fr 5fr 1fr;
+            gap: 15px;
+        }
+
+        .header{
+            grid-column: 1/span 2;
+            background-color: green;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+        }
+        .sidebar{
+            grid-column: 1;
+            grid-row: 2/span 5;
+            background-color: blue;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+
+        }
+        .nav{
+            grid-column: 2;
+            background-color: purple;
+            text-align: center;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        .article{
+            grid-column: 2;
+            grid-row: 3/span 4;
+            background-color: blueviolet;
+            text-align: center;
+            color: white;
+            padding: 10px 20px;
+        }
+        .footer{
+            grid-column: 1/span 2;
+            background-color: gray;
+            text-align: center;
+            color: white;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="header">header</div>
+        <div class="sidebar">sidebar</div>
+        <div class="nav">nav</div>
+        <div class="article">article
+            <P>In academic publishing, a paper is an academic work that is usually published in an academic journal. It contains original research results or reviews existing results. Such a paper, also called an article, will only be considered valid if it undergoes a process of peer review by one or more referees (who are academics in the same field) who check that the content of the paper is suitable for publication in the journal. A paper may undergo a series of reviews, revisions, and re-submissions before finally being accepted or rejected for publication. This process typically takes several months. Next, there is often a delay of many months (or in some fields, over a year) before an accepted manuscript appears.[1] This is particularly true for the most popular journals where the number of accepted articles often outnumbers the space for printing. Due to this, many academics self-archive a 'preprint' or 'postprint' copy of their paper for free download from their personal or institutional website.
+            </P>        </div>
+        <div class="footer">footer</div>
+    </div>
+</body>
+</html>

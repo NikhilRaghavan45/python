@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: grid;
+            grid-template-columns: 1fr 4fr;
+            gap: 4px;
+        }
+
+        .header{
+            grid-column: 1/span 2;
+        }
+
+        .menu u1{
+            display:grid;
+            list-style-type: none;
+            float: right;
+        }
+        .nav u1{
+            display: grid;
+        }
+
+        .sidebar{
+            grid-column: 1;
+            gap: 50px;
+        }
+        .sidebar .text-elemets{
+            display: grid;
+            place-items: center;
+        }
+        .article{
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+            gap: 15px;
+        }
+        .article .card{
+            height: 200px;
+        }
+
+        .footer{
+            grid-column: 1/span 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">header</div>
+        <div class="menu">
+            <ul>
+                <li >header link1</li>
+                <li>header link2</li>
+                <li>header link3</li>
+                <li>header link4</li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="nav">
+        <ul>
+
+        </ul>
+    </div>
+    <div class="sidebar">
+        <div class="text-elements">
+
+        </div>
+    </div>
+    <div class="article">
+        <div class="card">card 1</div>
+        <div class="card">card 1</div>
+    </div>
+    <div class="footer">Footer</div>
+</div>
+</body>
+</html>
