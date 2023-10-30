@@ -1,0 +1,93 @@
+<html>
+    <head></head>
+    <body>
+        <script>
+            // var fact=parseInt(prompt("enter the number:"))
+            // var result=1;
+            // for(var i=fact;i>0;i--){
+            //     result*=i
+            // }
+            // document.write("the factorial of the "+fact+" is "+result)
+            // var year=parseInt(prompt("enter the year"))
+            // if(year%4==0 && year%400==0 && year%100!==0){
+            //     document.write("the "+year+" is a leap year")
+            // }
+            // else{
+            //     document.write("the "+year+" is not a leap year")
+            // }
+            
+
+            // for(let i=1700;i<+2010;i++){
+            //     if((i%4==0 && i%100!==0) || i%400==0){
+            //     document.write(i+"<br/>")
+            //     }
+            // }
+
+            // for(let i=3;i<=99;i++){
+            //     let isprime=1;
+            //     for(let j=2;j<=Math.sqrt(i);j++){
+            //         if(i%j===0){
+            //             isprime=0;
+            //             break;
+            //         }
+            //     }
+            //     if(isprime){
+            //         document.write(i+"</br>");
+            //     }
+            // }
+
+
+            // var str=prompt("enter the string:")
+            // var result=''
+            // for(let i=str.length-1;i>=0;i--){
+            //     result+=str[i]
+                
+            // }
+            // document.write(result+"</br>")
+            // if(str==result){
+            //     document.write("palindrome")
+            // }
+            // else{
+            //     document.write("Not palindrome")
+
+            // }
+
+            
+            var cal=prompt("enter the number:")
+            do{
+            var pre=prompt("enter 1 for addition"+"enter 2 for subtraction"+"enter 3 for multiplication"+"enter 4 for division")
+            var cak=parseInt(prompt("enter operation the number:"))
+            var pan=prompt("enter the number:")
+            if(cak=1){
+                document.write(parseInt(cal)+parseInt(pan))
+            }
+            else if(cak=2){
+                document.write(parseInt(cal)-parseInt(pan))
+            }
+            else if(cak=3){
+                document.write(parseInt(cal)*parseInt(pan))
+            }
+            else if(cak=4){
+                document.write(parseInt(cal)%parseInt(pan))
+            }
+            var con=parseInt(prompt("if you want to continue:"))
+
+        }while(con=1)
+
+
+
+
+           
+
+
+
+
+           
+
+            
+
+            
+        </script>
+
+    </body>
+</html>
