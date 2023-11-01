@@ -1,0 +1,347 @@
+
+<html>
+<head>
+    <script>
+        function validateUserName(uname){
+            //var username = document.forms["frmregister"]["username"]
+            //alert(username.value)
+            if (uname.length < 6){
+//                alert("Username must be more than 5 characters")
+                let erruntxt = document.getElementById("erruntxt")
+                erruntxt.innerHTML ="Username must be more than 5 characters" 
+                return false
+            }
+            else{
+                erruntxt.innerHTML=""
+            }
+            return true
+        }
+
+        function displayGender(){
+            let gen = document.forms["frmregister"]["gender"].value
+            let infotxt = document.getElementById("info")
+                
+          
+            switch(gen){
+                case("M") : 
+                    infotxt.innerHTML = "Selected Gender: Male"
+                    break
+                case("F") : 
+                    infotxt.innerHTML = "Selected Gender: Female"
+                    break
+                case("T") : 
+                    infotxt.innerHTML = "Selected Gender: Transgender"
+                    break
+                default:
+                    infotxt.innerHTML = "No gender Selection"
+            }
+        }
+
+        
+
+        
+        function validateEducation(){
+            let edu=document.getElementsByName("education[]")
+
+            var edustr=''
+            let informtext=document.getElementById('inform')
+            for(var i=0;i<edu.length;i++){
+                if(edu[i].checked){
+                    edustr+=edu[i].value+ " "
+                }
+            }
+
+            informtext.innerHTML="selected education: "+ edustr
+
+
+                 
+        }    
+
+
+        function validateCountry(){
+            let con = document.forms["frmregister"]["countries"].value
+            let countrytxt = document.getElementById("country")
+                
+          
+            switch(con){
+                case("India") : 
+                    countrytxt.innerHTML = "Selected Gender: Male"
+                    break
+                case("Japan") : 
+                    infotxt.innerHTML = "Selected Gender: Female"
+                    break
+                case("sweden") : 
+                    infotxt.innerHTML = "Selected Gender: Transgender"
+                    break
+                case("pakistan") : 
+                    infotxt.innerHTML = "Selected Gender: Transgender"
+                    break
+                case("USA") : 
+                    infotxt.innerHTML = "Selected Gender: Transgender"
+                    break                                        
+                default:
+                    infotxt.innerHTML = "No gender Selection"
+            }
+        }     
+
+        }
+
+        function validatePassword(){
+            let upass  = document.forms["frmregister"]["userpass"]
+            let rpass = document.forms["frmregister"]["rpass"]
+            let pattern = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/
+            // alert(upass.value)
+            // alert(rpass.value)
+            // //alert("parag" + re.test(upass.value))
+            if ((upass.value != rpass.value) || (rpass == "") ){
+                alert("password mismatch")
+                return false
+            }
+            else if(!(pattern.test(upass.value))){
+                alert("Minimum eight characters, at least one letter and one number")
+                return false;
+            }
+            return true
+        }
+        function validateMobile(){
+            let umobile = parseInt(document.forms["frmregister"]["usermobile"].value)
+            let pattern = /[0-9]/
+            if ((umobile.toString().length!=10) || (!(pattern.test(umobile))))
+            {
+                alert("Only numbers are allowed and it can have only 10 numbers")
+                    return false
+            }
+            return true
+        }
+
+
+        function validateform(){
+            if ((validatePassword()) && (validateUserName()) && (validateMobile())){
+                return true;
+            }
+            return false;
+        }
+        
+    </script>
+    <style>
+        input{
+            background-color:yellow;
+            color: blue;
+        }
+        div{
+            background-color: red;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <h1>HTML FORM CONTROL DEMO</h1>
+</center>
+<form name="frmregister" action="jsdemo.htm" onsubmit="return validateform()">
+    <table bgcolor="aqua" border=1 cellspacing="0" align="center" width="30%">
+        <tr>
+            <th>
+                <label for="username">UserName:</label> 
+            </th>
+            <td>
+                <input type="text"
+                id="username"
+                name ="username"
+                placeholder="Enter your username"
+                maxlength="15"
+                autofocus
+                required 
+                onblur="validateUserName(this.value)"  
+                 />
+                 <div id="erruntxt"></div>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label>Password:</label> 
+            </th>
+            <td>
+                <input type="password"
+                id="userpass"
+                name="userpass"
+                placeholder="Enter your password"
+                autofocus
+                required
+                />
+            </td>
+        </tr>
+        <tr>
+            <th nowrap>
+                <label>Retype Password:</label> 
+            </th>
+            <td>
+                <input type="password"
+                id="rpass"
+                name="rpass"
+                placeholder="Enter your password"
+                autofocus
+                
+                />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label>Email:</label> 
+            </th>
+            <td>
+                <input type="email"
+                id="useremail"
+                name="useremail"
+                placeholder="Enter your email"
+                autofocus
+                />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label>Salary:</label> 
+            </th>
+            <td>
+                <input type="number"
+                id="usersalary"
+                name="usersalary"
+                placeholder="Enter your Salary"
+                autofocus
+                min="10000"
+                max="9999999999"
+                />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label>Mobile:</label> 
+            </th>
+            <td>
+                <input type="text"
+                id="usermobile"
+                name="usermobile"
+                placeholder="Enter your mobile"
+                autofocus
+                onblur="validateMobile()"
+                />
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                <label>Address:</label> 
+            </th>
+            <td>
+                <textarea name="textaddr" id="textaddr" rows="3" cols="30"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label>Gender:</label> 
+            </th>
+            <td>
+                <input type="radio" onclick="displayGender()"
+                id="gender" name="gender" value = "M"
+                /> Male
+                <input type="radio" onclick="displayGender()"
+                id="gender" name="gender" value="F"
+                /> Female
+                <input type="radio" onclick="displayGender()"
+                id="gender" name="gender" value="T"> Transgender
+                <div id="info"></div>
+            </td>
+            
+        </tr>
+        <tr>
+            <th>
+                <label>Education:</label> 
+            </th>
+            <td>
+                <input type="checkbox" onclick="validateEducation()"
+                id="education" name="education[]" value="UG"
+                /> Graduate
+                <input type="checkbox" onclick="validateEducation()"
+                id="education" name="education[]" value="PG"
+                /> Post Graduate
+                <input type="checkbox" onclick="validateEducation()"
+                id="education" name="education[]" value="PHD"> Doctoral
+                <div id="inform"></div>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label>Country:</label> 
+            </th>
+            <td>
+                <select name="countrie">
+                    <option onclick="validateCountry()" name="countries" value="India" id="ctn">India</option>
+                    <option onclick="validateCountry()" name="countries" value="Japan" id="ctn">Japan</option>
+                    <option onclick="validateCountry()" name="countries" value="Sweden" id="ctn">Sweden</option>
+                    <option onclick="validateCountry()" name="countries" value="Pakistan" id="ctn">Pakistan</option>
+                    <option onclick="validateCountry()" name="countries" value="USA" id="ctn">USA</option>
+                    <div id="country"></div>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label>Hobbies:</label> 
+            </th>
+            <td>
+                <select multiple name="hobbies">
+                    <option>Playing Cricket</option>
+                    <option>Singing</option>
+                    <option>Roaming</option>
+                    <option>Watching Movies</option>
+                    <option>Swimming</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label>Income Range:</label> 
+            </th>
+            <td>
+               20000<input type="range" name="income" min="20000" max="100000000"/>100000000
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label>Profile Photo:</label> 
+            </th>
+            <td>
+               <input type="file" name="profile"/>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label>Favouraite Song:</label> 
+            </th>
+            <td>
+               <audio controls src="">
+                your browser doesn't support audio playing
+               </audio>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label>Favouraite Video:</label> 
+            </th>
+            <td>
+               <video controls  width="150"
+               height="150" autoplay>
+               <source src="" type="video/mp4"/>
+               <source src="" type="video/avi"/>
+               </video>
+            </td>
+        </tr>
+        <tr>
+            <td align="right"><button type="submit" > Register 
+            </button></td>
+            <td><button type="reset">Clear Form </button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
