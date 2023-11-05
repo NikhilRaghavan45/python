@@ -24,6 +24,9 @@
                 <label for="pdesc">Product Desc</label>
                 <textarea rows="1" cols="22" name="pdesc" id="pdesc" formControlName="pdesc"></textarea>
             </div>
+            <div *ngIf="pform.get('pdesc')?.hasError('productDescInvalid') && pform.get('pdesc')?.touched">
+                <div style="color: red;">Product Description should contain only alphabets and spaces.</div>
+            </div>
             <div class="form-group" style="padding: 10px 0px;">
                 <label for="pprice">Price</label>
                 <input type="number" name="price" id="price" formControlName="pprice">

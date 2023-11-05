@@ -17,7 +17,7 @@ export class ProjectComponent {
   pform = new FormGroup({
   pid: new FormControl(null, [Validators.required, this.productIdValidator]),
   pname: new FormControl('',[Validators.required,this.productNameValidator]),
-  pdesc: new FormControl('',[Validators.required]),
+  pdesc: new FormControl('',[Validators.required,this.productDescValidator]),
   pprice : new FormControl('',[Validators.required]),
   pqty: new FormControl(),
   pavail:new FormControl(),
@@ -48,6 +48,17 @@ export class ProjectComponent {
       return { 'productNameInvalid': true }; // Invalid product name
     }
   }
+
+  productDescValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const value = control.value;
+  
+    if (/^[a-zA-Z\s]*$/.test(value)) {
+      return null; // It's a valid product description
+    } else {
+      return { 'productDescInvalid': true }; // Invalid product description
+    }
+  }
+  
 
  
 
