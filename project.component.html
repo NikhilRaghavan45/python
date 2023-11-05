@@ -1,0 +1,50 @@
+
+<form [formGroup]="pform" (ngSubmit)="submitReg()" style="background-color: white; display: flex; justify-content: center; background-color: gray; height: 100vh;">
+    <div>
+        <h1 style="text-align: center;">PRODUCT FORM</h1>
+        <div class="container col-sm-2" style="background-color: black; color: white; padding: 30px; border: 2px solid black; border-radius: 20px; width: 400px; height: 500px; margin-top: auto; margin-bottom: auto;">
+            <div>
+                <div class="form-group" style="padding: 10px 0px;">
+                    <label for="pid">Product Id</label>
+                    <input type="number" name="pid" id="pid" formControlName="pid">
+                </div>
+            </div>
+            <div *ngIf="pform.get('pid')?.hasError('productIdInvalid') && pform.get('pid')?.touched">
+                <div style="color: red;">Product Id should be a positive integer starting from 1 and incrementing.</div>
+              </div>
+              
+            <div class="form-group" style="padding: 10px 0px;">
+                <label for="pname">Product Name</label>
+                <input type="text" name="pname" id="pname" formControlName="pname">
+            </div>
+            <div *ngIf="pform.get('pname')?.hasError('productNameInvalid') && pform.get('pname')?.touched">
+                <div style="color: red;">Product Name should contain only alphabets and spaces.</div>
+            </div>
+            <div class="form-group" style="padding: 10px 0px;">
+                <label for="pdesc">Product Desc</label>
+                <textarea rows="1" cols="22" name="pdesc" id="pdesc" formControlName="pdesc"></textarea>
+            </div>
+            <div class="form-group" style="padding: 10px 0px;">
+                <label for="pprice">Price</label>
+                <input type="number" name="price" id="price" formControlName="pprice">
+            </div>
+            <div class="form-group" style="padding: 10px 0px;">
+                <label for="pqty">Quantity</label>
+                <input type="number" name="pqty" id="pqty" formControlName="pqty">
+            </div>
+            <div class="form-group">
+                <label for="pavail">Availability</label>
+                <input type="checkbox" name="pavail" id="pavail" formControlName="pavail" value="Y">Y
+                <span class="checkbox-space"></span>
+                <input type="checkbox" name="pavail" id="pavail" formControlName="pavail" value="N">N
+            </div>            
+            <div class="form-group" style="padding: 10px 0px;display: inline-flex;">
+                <label for="pimg">Product Image</label>
+                <input type="file" name="pimg" id="pimg" formControlName="pimg">
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center;margin-top: 10px;">
+                <button type="submit" [disabled]="!pform.valid" class="btn btn-primary">Save Registration</button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,54 @@
+ 
+
+
+
+*input, textarea {
+    float: none;
+    width: 100%;
+}
+
+
+label {
+    font-size: medium;
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: capitalize;
+    font-weight: bold;
+    float: left;
+    width: 120px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+}
+
+div[class="container col-sm-2"] .img label {
+    float: none;
+}
+
+div[class="container col-sm-2"] .img input[type="file"] {
+    display: inline-block;
+    width: auto;
+}
+
+div[class="container col-sm-2"] .img button {
+    clear: both;
+}
+
+div[class="container col-sm-2"] label p {
+    display: inline;
+    margin-left: 5px;
+}
+
+.invalid-feedback {
+    color: red;
+    font-size: small;
+}
+
+.checkbox-space {
+    margin-right: 10px;
+}
+
+input[type="file"] {
+    margin-left: auto;
+}
