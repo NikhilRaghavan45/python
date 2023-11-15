@@ -1,0 +1,63 @@
+/* The side navigation menu */
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    z-index: 1; /* Ensure the sidebar is above other elements */
+  }
+  
+  /* Sidebar links */
+  .sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+  }
+  
+  /* Active/current link */
+  .sidebar a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+  
+  /* Links on mouse-over */
+  .sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+  
+  /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+  div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+    transition: margin-left 0.5s; /* Add transition for smooth effect */
+    position: relative; /* Add position relative to the content */
+    z-index: 0; /* Set a lower z-index for the content */
+  }
+  
+  /* Logo and name styles */
+  .logo-and-name {
+    position: relative;
+    z-index: 2; /* Set a higher z-index for the logo and name */
+  }
+  
+  /* On screens that are less than 700px wide, make the sidebar into a top bar */
+  @media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    .sidebar a {
+      float: none;
+    }
+    div.content {
+      margin-left: 0;
+    }
+  }
+  
