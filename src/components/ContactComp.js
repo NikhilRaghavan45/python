@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import './Contact.css'
+import axios from 'axios';
+// import './Contact.css'
 import '/node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 
@@ -7,41 +8,38 @@ import '/node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 
 const ContactComp = () => {
-    const [fname, setfname] = useState('');
-    const [email, setEmail] = useState('');
-    const [num, setnum] = useState('');
-    const [error, setError] = useState('');
-    const [message, setMessage] = useState('');
+    const[formData,setFormData]=useState({
+        fname: '',
+        email: '',
+        contact: '',
+        message: ''
+    })
+    const [errors, setErrors] = useState({});
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+          ...formData,
+          [name]: value,
+        });
+      };
 
-
-    const handleFirstName = (e) => {
-        setfname(e.target.value);
-    };
-
-    const handleContact = (e) => {
-        setnum(e.target.value);
-    };
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
-
-    const handleMessageChange = (e) => {
-        setMessage(e.target.value);
-    };
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
-        if (!fname || !email || !num || !message) {
-            setError('All fields are required');
-            return;
+    
+        
+          try {
+            
+            const response = await axios.post('http://localhost:3001/contacts', formData);
+    
+            console.log('User created:', response.data);
+            window.alert('Message Send Successfull')
+   
+         
+          } catch (error) {
+            console.error('Error creating user:', error);
+          }
         }
-
-
-        console.log('Form submitted!');
-
-        setError('');
-    };
+      
 
 
     return (
@@ -54,29 +52,33 @@ const ContactComp = () => {
                         <form className="my-form" onSubmit={handleSubmit}>
                             <div class="form-group ">
                                 <label for="fname">Name</label>
-                                <input type="text" class="form-control" id="fname" value={fname} pattern="[A-Za-z]{3,10}" onChange={handleFirstName} placeholder="Name" />
+                                <input type='text' name='fname' className='form-control' placeholder='Enter full name' 
+                       onChange={handleChange}/>
                             </div>
                                           
 
                             <div class="form-group mt-3">
                                 <label for="email ">Email Address</label>
-                                <input type="email" class="form-control" id="email" value={email} onChange={handleEmailChange} placeholder="Email Address" />
+                                <input type='text' name='email' className='form-control' placeholder='Enter email' 
+                        onChange={handleChange}/>
                             </div>
                            
 
                             <div class="form-group mt-3">
                                 <label for="tel">Contact</label>
-                                <input type="tel" class="form-control" value={num} pattern="[789][0-9]{9}" onChange={handleContact} placeholder="contact" />
+                                <input type="tel" className="form-control" name='contact' pattern="[789][0-9]{9}" 
+                               onChange={handleChange} placeholder="contact" />
                             </div>
                            
 
                             <div class="form-group mt-3">
-                                <label for="form-message">Email your Message</label>
-                                <textarea class="form-control" id="form-message" value={message} onChange={handleMessageChange} placeholder="message"></textarea>
+                                <label for="form-message" >Email your Message</label>
+                                <textarea class="form-control" id="form-message" name='message' 
+                                onChange={handleChange} placeholder="message"></textarea>
                             </div>
                     
 
-                            <button class="btn btn-default" type="submit"  style={{ marginTop: 20 }}>Contact Us</button>
+                            <button class="btn btn-info" type="submit"  style={{ marginTop: 20 }}>Contact Us</button>
                         </form>
                     </div>
                     <div className='col-6'>

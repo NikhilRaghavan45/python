@@ -1,7 +1,9 @@
 // import logo from './logo.svg';
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
 import MyRoutingComp from './components/RoutingModule';
-import SidebarComp from './components/SidebarComp';
+import UserComp from './components/UserComp';
+
 
 
 
@@ -22,8 +24,8 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <MyRoutingComp/> 
-      
+       <MyRoutingComp/>
+     
       {/* <SidebarComp/>  */}
       
     </div>

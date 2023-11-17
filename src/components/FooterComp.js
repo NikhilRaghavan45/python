@@ -68,10 +68,10 @@ class FooterComp extends Component {
                             <section>
                                 <div className="row">
                                     <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                                        <h5 class="text-uppercase">Links</h5>
+                                        <h5 class="text-uppercase">Home</h5>
 
                                         <ul class="list-unstyled mb-0">
-                                            <li>
+                                             <li>
                                                 <a href="#!" class="text-white">Link 1</a>
                                             </li>
                                             <li>
@@ -82,13 +82,13 @@ class FooterComp extends Component {
                                             </li>
                                             <li>
                                                 <a href="#!" class="text-white">Link 4</a>
-                                            </li>
+                                            </li> 
                                         </ul>
                                     </div>
 
 
                                     <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                                        <h5 class="text-uppercase">Links</h5>
+                                        <h5 class="text-uppercase">Menu</h5>
 
                                         <ul class="list-unstyled mb-0">
                                             <li>
@@ -102,12 +102,12 @@ class FooterComp extends Component {
                                             </li>
                                             <li>
                                                 <a href="#!" class="text-white">Link 4</a>
-                                            </li>
+                                            </li> 
                                         </ul>
                                     </div>
 
                                     <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                                        <h5 class="text-uppercase">Links</h5>
+                                        <h5 class="text-uppercase">About</h5>
 
                                         <ul class="list-unstyled mb-0">
                                             <li>
@@ -121,12 +121,12 @@ class FooterComp extends Component {
                                             </li>
                                             <li>
                                                 <a href="#!" class="text-white">Link 4</a>
-                                            </li>
+                                            </li> 
                                         </ul>
                                     </div>
 
                                     <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                                        <h5 class="text-uppercase">Links</h5>
+                                        <h5 class="text-uppercase">Contact</h5>
 
                                         <ul class="list-unstyled mb-0">
                                             <li>
@@ -140,7 +140,7 @@ class FooterComp extends Component {
                                             </li>
                                             <li>
                                                 <a href="#!" class="text-white">Link 4</a>
-                                            </li>
+                                            </li> 
                                         </ul>
                                     </div>
 

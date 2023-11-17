@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 // import TextField from '@mui/material/TextField';
-import './cloths.css'
+// import '../component/cloths.css'
 
 const LoginComp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate=useNavigate('')
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -16,12 +19,30 @@ const LoginComp = () => {
     setPassword(e.target.value);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit =  async (e) => {
     e.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
-    setEmail('');
-    setPassword('');
+    try {
+      const response = await axios.get('http://localhost:3001/users', {
+        params: {
+          email,
+          password,
+        },
+      });
+
+      const userData = response.data;
+
+      if (userData.length > 0) {
+        // Successful login
+        console.log('Login successful');
+        navigate('/SidebarComp')
+      } else {
+        // Invalid credentials
+        console.log('Invalid username or password');
+        setError({ login: 'Incorrect username or password' });
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
 
   return (
@@ -53,7 +74,7 @@ const LoginComp = () => {
                     value={password}
                     onChange={handlePasswordChange}
                     required
-                  />
+                  /> {error.login && <p style={{ color: 'red' }}>{error.login}</p>}
                 </div><br/>
                 <button type="submit" className="btn btn-primary">Login</button>
               </form>

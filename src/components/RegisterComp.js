@@ -1,62 +1,82 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './cloths.css'
+import {Route, Link, BrowserRouter, Routes, useNavigate } from 'react-router-dom';
 
-const RegisterComp = () => {
-   const[fname,setfname]=useState('');
-  const[lname,setlname]=useState('');
-  const[num,setnum]=useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  // const[Rpassword,setRPassword]=useState('');
-  const [retypePassword, setRetypePassword] = useState('');
-  const [valid, setValid] = useState(false);
-   
- 
-    const handlePasswordChange = (e) => {
-      setPassword(e.target.value);
-      // Perform your password validation here
-      validatePasswords(e.target.value, retypePassword);
-    };
+import axios from 'axios';
+
+
+const SignInPage = () => {
+  const[formData,setFormData]=useState({
+    fname: '',
+    lname: '',
+    num: '',
+    email: '',
+    password: '',
+    Rpassword: ''
+})
+const nav=useNavigate();
+const [errors, setErrors] = useState({});
   
-    const handleRetypePasswordChange = (e) => {
-      setRetypePassword(e.target.value);
-      // Perform your password validation here
-      validatePasswords(password, e.target.value);
-    };
-  
-    const validatePasswords = (password, retypePassword) => {
-      // Check if passwords match and meet validation criteria
-      if (password === retypePassword && password.length >= 8) {
-        setValid(true);
-      } else {
-        setValid(false);
-      }
-    };
-  const handleFirstName = (e) => {
-    setfname(e.target.value);
-  };
-  const handleLastName = (e) => {
-    setlname(e.target.value);
-  };
-  const handleContact = (e) => {
-    setnum(e.target.value);
-  };
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
+  const validateForm = () => {
+    const newErrors = {};
 
-  const handleSubmit = (e) => {
+    // Simple validation checks
+    // if (!formData.username) {
+    //   newErrors.username = 'Username is required';
+    // }
+
+    // if (!formData.email) {
+    //   newErrors.email = 'Email is required';
+    // } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    //   newErrors.email = 'Invalid email address';
+    // }
+
+    // if (!formData.password) {
+    //   newErrors.password = 'Password is required';
+    // } else if (formData.password.length ==`(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}`) {
+    //   newErrors.password = 'Password must be at least 6 characters';
+    // }
+
+    if (formData.Rpassword !== formData.password) {
+      newErrors.confirmPassword = 'Passwords do not match';
+    }
+
+    setErrors(newErrors);
+
+    // Return true if there are no errors, false otherwise
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Perform form submission logic here
-    if (valid) {
-      // Submit the form or perform desired action
-      console.log('Form submitted!');
-    } else {
-      console.log('Form not submitted. Please check passwords.');
+
+    if (validateForm()) {
+      try {
+        // Make a POST request to JSON Server
+        const response = await axios.post('http://localhost:3001/users', formData);
+
+        // Handle the response as needed
+        console.log('User created:', response.data);
+        window.alert('Register successfull')
+    nav('/LoginComp');
+        // Optionally, redirect to another page or perform other actions
+      } catch (error) {
+        console.error('Error creating user:', error);
+      }
     }
   };
+
+
+
+
 
 
 
@@ -69,78 +89,78 @@ const RegisterComp = () => {
         
             {/* <div className="card-body"> */} 
               <h2 className='mt-5 '>Sign Up</h2><br/>
-              <form  onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
 
               <div className="col-8 mx-auto">
-                  <label htmlFor="fname" className="form-label">First Name</label>
+                  <label htmlFor="fname" className="form-label"><b>First Name</b></label>
                   <input
                     type="text"
                     className="form-control border-danger"
                     id="fname"
-                    value={fname} 
-                    pattern="[A-Za-z]{3,10}"
-                    onChange={handleFirstName}
+                    name="fname"
+                    // pattern="[A-Za-z]{3,10}"
+                    value={formData.fname} onChange={handleChange}
                     required />
-                   
+                     {errors.username && <p style={{ color: 'red' }}>{errors.username}</p>}
                 </div>
                 <div className="col-8 mx-auto">
-                <label htmlFor="email" className="form-label">Last Name</label>
+                <label htmlFor="email" className="form-label"><b>Last Name</b></label>
                   <input
                     type="text"
                     className="form-control border-danger"
                     id="lname"
-                    value={lname}
-                    onChange={handleLastName}
-                    />
+                    name='lname'
+                    value={formData.lname} onChange={handleChange}
+                    />  {errors.username && <p style={{ color: 'red' }}>{errors.username}</p>}
                 </div>
                 <div className="col-8 mx-auto">
-                  <label htmlFor="tel" className="form-label">Contact No</label>
+                  <label htmlFor="tel" className="form-label"><b>Contact No</b></label>
                   <input
                     type="tel"
                     className="form-control border-danger"
                     id="tel"
-                    value={num}
-                    pattern="[789][0-9]{9}" 
-                    onChange={handleContact}
+                    name='num'
+                    pattern="[789][0-9]{9}"
+                    value={formData.num} onChange={handleChange}
                     required
                   />
                 </div>
                 <div className="col-8 mx-auto">
-                  <label htmlFor="email" className="form-label">Email:</label>
+                  <label htmlFor="email" className="form-label"><b>Email:</b></label>
                   <input
                     type="email"
                     className="form-control border-danger"
                     id="email"
-                    value={email}
-                    onChange={handleEmailChange}
+                    name='email'
+                    value={formData.email} onChange={handleChange}
                     required
-                  />
+                  />  {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
                 </div>
                 <div className="col-8 mx-auto">
-                  <label htmlFor="password" className="form-label">Password:</label>
+                  <label htmlFor="password" className="form-label"><b>Password:</b></label>
                   <input
                     type="password"
                     className="form-control border-danger"
                     id="password"
                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                    value={password}
-                    onChange={handlePasswordChange}
+                   
+                    name='password'
+                    value={formData.password} onChange={handleChange}
                     required
-                  />
+                  />  <p>(password must be A-Z,a-b, specialcharacters,0-9)</p>
                 </div>
                 <div className="col-8 mx-auto">
-                  <label htmlFor="retypePassword" className="form-label">Re-Type Password:</label>
+                  <label htmlFor="password" className="form-label "><b>Re-Type Password:</b></label>
                   <input
                     type="password"
                     className="form-control border-danger"
-                    id="Retypepassword"
-                    value={retypePassword}
-                    onChange={handleRetypePasswordChange}
+                    id="Rpassword"
+                    name='Rpassword'
+                    value={formData.Rpassword} onChange={handleChange}
                     required
-                />
-                  {/* {valid ? <p className='text-danger'>Passwords match and meet criteria</p> : <p>Passwords do not match or do not meet criteria</p>} */}
+                  />  {errors.confirmPassword  && <p style={{ color: 'red' }}>{errors.confirmPassword }</p>}
                 </div><br/>
-                <button type="submit" className="btn btn-primary ml-1"  disabled={!valid}>Sign In</button>
+                <button to="/LoginComp" type="submit" className="btn btn-primary ml-1" >Sign Up</button>
               
                
               </form>
@@ -153,4 +173,4 @@ const RegisterComp = () => {
   );
 };
 
-export default RegisterComp;
+export default SignInPage;
